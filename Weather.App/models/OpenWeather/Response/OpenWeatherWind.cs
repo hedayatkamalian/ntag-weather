@@ -1,17 +1,16 @@
 ﻿using Newtonsoft.Json;
 
-namespace Weather.App.models.OpenWeather.Response
+namespace Weather.App.models.OpenWeather.Response;
+
+public class OpenWeatherWind
 {
-    public class OpenWeatherWind
-    {
 
-        [JsonProperty("speed")]
-        public float Speed { get; set; }
+    [JsonProperty("speed")]
+    public float Speed { get; set; }
 
-        [JsonProperty("degree")]
-        public int Degree { get; set; }
+    [JsonProperty("deg")]
+    public int Degree { get; set; }
 
-        [JsonProperty("gust")]
-        public float Gust { get; set; }
-    }
+    [JsonProperty("gust")]
+    public float Gust { get; set; }
 }

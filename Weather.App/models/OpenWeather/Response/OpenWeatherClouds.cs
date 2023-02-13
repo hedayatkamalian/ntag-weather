@@ -1,10 +1,9 @@
 ﻿using Newtonsoft.Json;
 
-namespace Weather.App.models.OpenWeather.Response
+namespace Weather.App.models.OpenWeather.Response;
+
+public class OpenWeatherClouds
 {
-    public class OpenWeatherClouds
-    {
-        [JsonProperty("all")]
-        public int All { get; set; }
-    }
+    [JsonProperty("all")]
+    public int All { get; set; }
 }

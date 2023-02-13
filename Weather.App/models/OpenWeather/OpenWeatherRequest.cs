@@ -1,9 +1,8 @@
-﻿namespace Weather.App.models.OpenWeather
+﻿namespace Weather.App.models.OpenWeather;
+
+public class OpenWeatherRequest
 {
-    public class OpenWeatherRequest
-    {
-        public double lat { get; set; }
-        public double lon { get; set; }
-        public string appId { get; set; }
-    }
+    public double lat { get; set; }
+    public double lon { get; set; }
+    public string appId { get; set; }
 }
