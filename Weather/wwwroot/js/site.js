@@ -3,4 +3,59 @@
 
 // Write your JavaScript code.
 
-alert("hello world !")
+//$('.basicAutoComplete').autoComplete({
+//    //resolverSettings: {
+//    //    url: 'weatherController/index'
+//    //}
+//});
+
+
+function doit()
+{
+    $('.basicAutoSelect').typeahead({
+        minLength: 1,
+        source: function (request, response) {
+            $.ajax({
+                url: "/api/cities/",
+                data: {
+                    "q": request
+                },
+                type: "GET",
+                contentType: "json",
+                success: function (data) {
+                    items = [];
+                    map = {};
+                    $.each(data, function (i, item) {
+                        var id = item.Name;
+                        var name = item.Name;
+                        map[name] = {
+                            id: id,
+                            name: name
+                        };
+                        items.push(name);
+                    });
+                    response(items);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        },
+        updater: function (item) { }
+    })
+}
+
+$(document).ready(function () {
+
+    //$('.basicAutoSelect').autoComplete({
+    //    resolverSettings: {
+    //        url: '/api/cities',
+
+    //    }
+    //});
+    doit();
+})
+

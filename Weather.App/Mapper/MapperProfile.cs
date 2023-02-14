@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Weather.App.DTO;
+using Weather.App.Entities;
 using Weather.App.models.OpenWeather;
 
 namespace Weather.App.Mapper;
@@ -19,5 +20,10 @@ internal class MapperProfile : Profile
             .ForMember(dst => dst.Description, option => option.MapFrom(src => src.Weather.First().Description))
             .ForMember(dst => dst.Icon, option => option.MapFrom(src => src.Weather.First().Icon));
 
+        CreateMap<City, CitySearchResultItem>()
+            .ForMember(dst => dst.Id, option => option.MapFrom(src => src.Id))
+            .ForMember(dst => dst.Name, option => option.MapFrom(src => src.Name));
+
+        CreateMap<City, Coordinate>();
     }
 }

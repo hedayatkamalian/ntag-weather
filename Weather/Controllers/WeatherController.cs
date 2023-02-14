@@ -5,22 +5,22 @@ using Weather.App.Services.Interfaces;
 namespace Weather.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    [Route("api/[controller]")]
+    public class WeatherController : ControllerBase
     {
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<WeatherController> _logger;
         private readonly IWeatherService _weatherService;
 
-        public WeatherForecastController(
-            ILogger<WeatherForecastController> logger,
+        public WeatherController(
+            ILogger<WeatherController> logger,
             IWeatherService weatherService)
         {
             _logger = logger;
             _weatherService = weatherService;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public async Task<IActionResult> Get(CancellationToken cancellationToken)
+        [HttpGet]
+        public async Task<IActionResult> Get([FromQuery] string q, CancellationToken cancellationToken)
         {
             var query = new GetWeatherByCoordinatesQuery(52.5200, 13.4050);
             var result = await _weatherService.GetWeatherFromOpenWeatherByLocation(query, cancellationToken);

@@ -1,9 +1,8 @@
 ﻿using Microsoft.Extensions.Options;
 using Weather.App.Entities;
 using Weather.App.Options;
-using Weather.App.Services.Interfaces;
 
-namespace Weather.App.Services.Implements;
+namespace Weather.App.Data;
 
 public class CitiesRepository : ICitiesRepository
 {

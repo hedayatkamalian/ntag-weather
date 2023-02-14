@@ -1,6 +1,6 @@
 ﻿using Weather.App.Entities;
 
-namespace Weather.App.Services.Interfaces
+namespace Weather.App.Data
 {
     public interface ICitiesRepository
     {
