@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Weather.App.Data;
 using Weather.App.DTO;
-using Weather.App.Queries;
+using Weather.App.Entities;
 using Weather.App.Services.Interfaces;
 
 namespace Weather.App.Services.Implements
@@ -18,9 +18,9 @@ namespace Weather.App.Services.Implements
             _mapper = mapper;
         }
 
-        public IList<CitySearchResultItem> SearchCityByName(SearchCityByNameQuery query)
+        public IList<CitySearchResultItem> SearchCityByName(string query)
         {
-            var result = _citiesRepository.SearchByName(query.Query);
+            var result = _citiesRepository.SearchByName(query);
             return _mapper.Map<IList<CitySearchResultItem>>(result);
         }
 
@@ -28,6 +28,11 @@ namespace Weather.App.Services.Implements
         {
             var city = _citiesRepository.GetById(id);
             return _mapper.Map<Coordinate?>(city);
+        }
+
+        public City? GetCityById(int id)
+        {
+            return _citiesRepository.GetById(id);
         }
     }
 }

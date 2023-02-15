@@ -18,6 +18,7 @@ internal class MapperProfile : Profile
             .ForMember(dst => dst.WindSpeed, option => option.MapFrom(src => src.Wind.Speed))
             .ForMember(dst => dst.WindDirection, option => option.MapFrom(src => src.Wind.Degree))
             .ForMember(dst => dst.Description, option => option.MapFrom(src => src.Weather.First().Description))
+            .ForMember(dst => dst.Name, option => option.MapFrom(src => src.Name))
             .ForMember(dst => dst.Icon, option => option.MapFrom(src => src.Weather.First().Icon));
 
         CreateMap<City, CitySearchResultItem>()

@@ -4,5 +4,6 @@
     {
         public string BaseAddress { get; set; }
         public string APIKey { get; set; }
+        public string Units { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Weather.App.Queries;
+using Microsoft.Extensions.Options;
+using System.ComponentModel.DataAnnotations;
+using Weather.App.Options;
 using Weather.App.Services.Interfaces;
 
 namespace Weather.Controllers
@@ -9,17 +11,27 @@ namespace Weather.Controllers
     public class CitiesController : ControllerBase
     {
         private readonly ICitiesService _citiesService;
+        private readonly ApplicationOptions _applicationOptions;
 
-        public CitiesController(ICitiesService citiesService)
+        public CitiesController(ICitiesService citiesService,
+            IOptions<ApplicationOptions> applicationOptions)
         {
             _citiesService = citiesService;
+            _applicationOptions = applicationOptions.Value;
         }
 
 
-        [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] string name, CancellationToken cancellationToken)
+        [HttpGet("by-name")]
+        public IActionResult GetByName([FromQuery][MinLength(3)] string name, CancellationToken cancellationToken)
         {
-            var result = _citiesService.SearchCityByName(new SearchCityByNameQuery(name));
+            name = name.Trim();
+
+            if (string.IsNullOrEmpty(name) || name.Length < _applicationOptions.SearchQueryMinLength)
+            {
+                return UnprocessableEntity();
+            }
+
+            var result = _citiesService.SearchCityByName(name);
 
             if (result == null)
                 return NotFound();
