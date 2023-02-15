@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "bootstrap": "^5.2.3",
-    "bootstrap-autocomplete": "^2.3.7"
+    "bootstrap": "^5.2.3"
   }
 }
